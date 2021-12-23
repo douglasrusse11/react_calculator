@@ -30,7 +30,23 @@ describe("Calculator", () => {
     cy.get('.display').should('contain', '15')
   })
   
-  it('should be able to add decimals', () => {
+  it('should handle positive numbers', () => {
+    cy.get('#number5').click();
+    cy.get('#operator-multiply').click();
+    cy.get('#number7').click();
+    cy.get('#operator-equals').click();
+    cy.get('.display').should('contain', '35')
+  })
+
+  it('should handle negative numbers', () => {
+    cy.get('#number1').click();
+    cy.get('#operator-subtract').click();
+    cy.get('#number4').click();
+    cy.get('#operator-equals').click();
+    cy.get('.display').should('contain', '-3')
+  })
+  
+  it('should handle decimals', () => {
     cy.get('#number0').click();
     cy.get('#decimal').click();
     cy.get('#number1').click();
@@ -42,35 +58,39 @@ describe("Calculator", () => {
     cy.get('.display').should('contain', '0.3')
   })
 
-  it('should handle negative numbers', () => {
-    cy.get('#operator-subtract').click();
-    cy.get('#number1').click();
-    cy.get('#operator-subtract').click();
-    cy.get('#operator-subtract').click();
-    cy.get('#number4').click();
-    cy.get('#operator-equals').click();
-    cy.get('.display').should('contain', '3')
-  })
 
   it('should handle large numbers', () => {
-    cy.get('#number9').click();
-    cy.get('#number9').click();
-    cy.get('#number9').click();
-    cy.get('#number9').click();
-    cy.get('#number9').click();
-    cy.get('#number9').click();
-    cy.get('#number9').click();
-    cy.get('#number9').click();
-    cy.get('#number9').click();
-    cy.get('#number9').click();
-    cy.get('#number9').click();
-    cy.get('#number9').click();
-    cy.get('#number9').click();
-    cy.get('#number9').click();
-    cy.get('#number9').click();
-    cy.get('#number9').click();
+    cy.get('#number1').click();
+    cy.get('#number0').click();
+    cy.get('#number0').click();
+    cy.get('#number0').click();
+    cy.get('#number0').click();
+    cy.get('#number0').click();
+    cy.get('#number0').click();
+    cy.get('#number0').click();
+    cy.get('#number0').click();
+    cy.get('#number0').click();
+    cy.get('#number0').click();
+    cy.get('#number0').click();
+    cy.get('#number0').click();
+    cy.get('#number0').click();
+    cy.get('#operator-multiply').click();
+    cy.get('#number1').click();
+    cy.get('#number0').click();
+    cy.get('#number0').click();
+    cy.get('#number0').click();
+    cy.get('#number0').click();
+    cy.get('#number0').click();
+    cy.get('#number0').click();
+    cy.get('#number0').click();
+    cy.get('#number0').click();
+    cy.get('#number0').click();
+    cy.get('#number0').click();
+    cy.get('#number0').click();
+    cy.get('#number0').click();
+    cy.get('#number0').click();
     cy.get('#operator-equals').click();
-    cy.get('.display').should('contain', '9999999999999999')
+    cy.get('.display').should('contain', '1e+26')
   })
 
   it('should log an error message and set running total to 0 if the user divides by 0', () => {
